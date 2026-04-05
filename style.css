@@ -1,0 +1,12 @@
+#board {
+  display: grid;
+  grid-template-columns: (8, 1fr);
+}
+.square {
+}
+.light-square {
+  background-color: gray;
+}
+.dark-square {
+  background-color: black;
+}
