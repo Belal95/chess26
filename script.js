@@ -1,5 +1,7 @@
 import { Board } from "./board.js";
 import { boardState } from "./boardState.js";
+import { renderPieces } from "./renderPieces.js";
 const board = document.getElementById("board");
 Board.createBoard(board);
-console.log(boardState);
+renderPieces();
+// console.log(boardState);
