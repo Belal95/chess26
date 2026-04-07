@@ -1,12 +1,36 @@
+:root {
+  /* Color variables */
+  --bg-color: #fff;
+  --text-color: #000;
+  --primary-color: white;
+  --secondary-color: black;
+  /* Board size */
+  --board-size: 512px;
+}
+
+body {
+  margin-top: 50px;
+}
+/* Board Start*/
 #board {
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: (8, 1fr);
+  width: var(--board-size);
+  grid-template-columns: repeat(8, 1fr);
 }
+/* Board End*/
+/* Squares Start*/
 .square {
+  border: 1px solid black;
+  padding: 10px;
+  aspect-ratio: 1;
+  text-align: center;
 }
-.light-square {
-  background-color: gray;
+.light.square {
+  background-color: white;
 }
-.dark-square {
+.dark.square {
   background-color: black;
 }
+
+/* Squares End*/
