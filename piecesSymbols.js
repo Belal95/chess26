@@ -17,11 +17,11 @@
 //   },
 // };
 
-const pieces = {
+export const pieces = {
   white: {
     king: "♔",
     queen: "♕",
-    rook: "♖;",
+    rook: "♖",
     bishop: "♗",
     knight: "♘",
     pawn: "♙",

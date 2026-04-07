@@ -1,4 +1,4 @@
-const getFirstSquareIndexInRow = (row) => (row - 1) / 8;
+const getFirstSquareIndexInRow = (row) => (row - 1) * 8;
 /**
  * @param boardState The actual board state
  */
@@ -34,6 +34,7 @@ const fillBackRow = (row, color) => {
 const fillPawnRow = (row, color) => {
   const type = "pawn";
   let index = getFirstSquareIndexInRow(row);
+
   for (let i = 0; i < 8; i++) {
     boardState[index] = { type, color, index };
     index++;
