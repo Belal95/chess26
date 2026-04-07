@@ -5,11 +5,15 @@
   --primary-color: rgb(255, 255, 255);
   --secondary-color: rgb(0, 0, 0);
   /* Board size */
-  --board-size: 512px;
+  /* --board-size: 512px; */
 }
 
 body {
   margin-top: 50px;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
 }
 /* Board Start*/
 #board {
