@@ -17,11 +17,11 @@ body {
   display: grid;
   width: var(--board-size);
   grid-template-columns: repeat(8, 1fr);
+  border: 2px solid var(--secondary-color);
 }
 /* Board End*/
 /* Squares Start*/
 .square {
-  border: 2px solid var(--secondary-color);
   padding: 10px;
   aspect-ratio: 1;
   text-align: center;
