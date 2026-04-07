@@ -9,9 +9,9 @@ export function renderPieces() {
       const { row, col } = Board.getSquarePosition(i);
       const { type, color } = boardState[i];
       console.log(pieces[`${color}`][`${type}`]);
-      const square = document.querySelector(`[row="${row}}"][col="${col}}"]`);
+      const square = document.querySelector(`[row="${row}"][col="${col}"]`);
       console.log(square);
-      square.innerHTML = `${pieces[`${color}`][`${type}`]}`;
+      square.innerHTML = `<div style="p">${pieces[`${color}`][`${type}`]}</div>`;
     }
     // console.log(boardState);
   }
