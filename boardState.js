@@ -1,3 +1,4 @@
+const getFirstSquareIndexInRow = (row) => (row - 1) / 8;
 /**
  * @param boardState The actual board state
  */
