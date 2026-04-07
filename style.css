@@ -2,8 +2,8 @@
   /* Color variables */
   --bg-color: #fff;
   --text-color: #000;
-  --primary-color: white;
-  --secondary-color: black;
+  --primary-color: rgb(255, 255, 255);
+  --secondary-color: rgb(0, 0, 0);
   /* Board size */
   --board-size: 512px;
 }
@@ -21,16 +21,16 @@ body {
 /* Board End*/
 /* Squares Start*/
 .square {
-  border: 1px solid black;
+  border: 2px solid var(--secondary-color);
   padding: 10px;
   aspect-ratio: 1;
   text-align: center;
 }
 .light.square {
-  background-color: white;
+  background-color: var(--primary-color);
 }
 .dark.square {
-  background-color: black;
+  background-color: var(--secondary-color);
 }
 
 /* Squares End*/
