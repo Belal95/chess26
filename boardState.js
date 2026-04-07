@@ -1,15 +1,14 @@
 /**
  * @param boardState The actual board state
  */
-
 export const boardState = new Array(64).fill(null);
 
 /**
- * Fills board state black or white back row with pieces, take
- * @param {Number} index - index where
- * @param {*} color
+ * Fills board state black or white back row with pieces, takes row number and pieces color
+ * @param {Number} row - row number that needs to be filled
+ * @param {String} color - pieces color
  */
-const fillBackRow = (index, color) => {
+const fillBackRow = (row, color) => {
   const backRow = [
     "rook",
     "knight",
@@ -20,21 +19,27 @@ const fillBackRow = (index, color) => {
     "knight",
     "rook",
   ];
+  let index = getFirstSquareIndexInRow(row);
   backRow.forEach((type) => {
     boardState[index] = { type, color, index };
     index++;
   });
 };
-
-const fillPawnRow = (index, color) => {
+/**
+ * Fills board state black or white second row with pawns, takes row number and pieces color
+ * @param {Number} row - row number that needs to be filled
+ * @param {String} color -pieces color
+ */
+const fillPawnRow = (row, color) => {
   const type = "pawn";
+  let index = getFirstSquareIndexInRow(row);
   for (let i = 0; i < 8; i++) {
     boardState[index] = { type, color, index };
     index++;
   }
 };
 
-fillBackRow(0, "black");
-fillPawnRow(8, "black");
-fillPawnRow(48, "white");
-fillBackRow(56, "white");
+fillBackRow(1, "black");
+fillPawnRow(2, "black");
+fillPawnRow(7, "white");
+fillBackRow(8, "white");
