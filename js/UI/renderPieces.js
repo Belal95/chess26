@@ -1,5 +1,4 @@
 import { boardState } from "./boardState.js";
-import { Board } from "./board.js";
 import { pieces } from "../Logic/piecesSymbols.js";
 
 export function renderPieces() {
