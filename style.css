@@ -26,9 +26,13 @@ body {
 /* Board End*/
 /* Squares Start*/
 .square {
-  padding: 10px;
+  /* padding: 10px; */
   aspect-ratio: 1;
   text-align: center;
+  display: flex;
+  align-items: flex-end;
+  flex-grow: 1;
+  justify-content: center;
 }
 .light.square {
   background-color: var(--primary-color);
@@ -39,12 +43,9 @@ body {
 
 /* Squares End*/
 
-.square > div {
-  margin-top: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
+.piece {
+  font-size: 4.5rem;
+  width: 100%;
+  height: 100%;
   cursor: pointer;
-  /* transform: scale(0.5, 1); */
 }
