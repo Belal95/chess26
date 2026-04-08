@@ -4,8 +4,8 @@ import { pieces } from "../Logic/piecesSymbols.js";
 
 export function renderPieces() {
   for (let i = 0; i < boardState.length; i++) {
-    const { row, col } = Board.getSquarePosition(i);
-    const square = document.querySelector(`[row="${row}"][col="${col}"]`);
+    // const { row, col } = Board.getSquarePosition(i);
+    const square = document.querySelector(`[index="${i}"]`);
     if (boardState[i] === null) square.innerHTML = null;
     else {
       const { type, color } = boardState[i];

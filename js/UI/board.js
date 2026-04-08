@@ -28,7 +28,8 @@ function setSquareColor(classList, sum) {
  * @param {Number} col
  * @param {Number} row
  */
-function setSquareClass(square, col, row) {
+function setSquareClass(square, i) {
+  const { row, col } = getSquarePosition(i);
   const classList = ["square"];
   const sum = col + row;
   setSquareColor(classList, sum);
@@ -43,9 +44,8 @@ function setSquareClass(square, col, row) {
 function createSquare(i) {
   const square = document.createElement("div");
   const { col, row } = getSquarePosition(i);
-  setSquareClass(square, col, row);
-  square.setAttribute("row", row);
-  square.setAttribute("col", col);
+  setSquareClass(square, i);
+  square.setAttribute("index", i);
   return square;
 }
 
