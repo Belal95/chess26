@@ -50,20 +50,12 @@ body {
   cursor: pointer;
 }
 
-.selected {
+.selected,
+.validMove {
   position: relative;
 }
-.selected::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: rgba(255, 255, 0, 0.318);
-}
-
-.ValidMove {
-  position: relative;
-}
-.ValidMove::after {
+.selected::after,
+.validMove::after {
   content: "";
   position: absolute;
   inset: 0;
