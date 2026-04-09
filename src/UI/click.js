@@ -2,11 +2,11 @@ import { boardState } from "../Logic/boardState.js";
 import { square } from "./square.js";
 
 //Click section
-let selectedPiece = "";
+let selectedPiece = null;
 let turn = "white";
 const deselect = (piece) => {
-  square.removeClass(piece?.index, "selected");
-  selectedPiece = "";
+  if (piece) square.removeClass(piece?.index, "selected");
+  selectedPiece = null;
 };
 const select = (piece) => {
   square.addClass(piece?.index, "selected");
@@ -21,7 +21,7 @@ export function handleClick(e) {
   const index = Number(e.target.closest(".square").getAttribute("index"));
   const clickedPiece = boardState[index];
   const pieceColor = clickedPiece?.color;
-  if (selectedPiece === "") {
+  if (selectedPiece === null) {
     // If a piece is not selected
     if (pieceColor === turn) {
       // Clicked Own Piece
