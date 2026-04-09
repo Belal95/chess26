@@ -51,9 +51,21 @@ body {
 }
 
 .selected {
-  overlay: blue;
-  /* background-color: blue !important; */
+  position: relative;
+}
+.selected::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 0, 0.318);
 }
 
-.validmove {
+.ValidMove {
+  position: relative;
+}
+.ValidMove::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 0, 0.318);
 }
