@@ -1,4 +1,4 @@
-import { createSquare } from "./square.js";
+import { square } from "./square.js";
 
 /**
  * Create the chess Board
@@ -7,7 +7,7 @@ import { createSquare } from "./square.js";
  */
 export function createBoard(board) {
   for (let i = 0; i < 64; i++) {
-    const square = createSquare(i);
-    board.appendChild(square);
+    const Square = square.create(i);
+    board.appendChild(Square);
   }
 }

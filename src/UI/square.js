@@ -5,7 +5,7 @@ import { getSquarePosition } from "../Logic/helpers.js";
  * @param {String[]} classList - Square ClassList
  * @param {Number} sum - Sum of row & column
  */
-function setSquareColor(classList, sum) {
+function setColor(classList, sum) {
   if (sum % 2 === 0) classList.push("light");
   else classList.push("dark");
 }
@@ -16,11 +16,11 @@ function setSquareColor(classList, sum) {
  * @param {Number} col
  * @param {Number} row
  */
-function setSquareClass(square, i) {
+function setInitialClass(square, i) {
   const { row, col } = getSquarePosition(i);
   const classList = ["square"];
   const sum = col + row;
-  setSquareColor(classList, sum);
+  setColor(classList, sum);
   square.classList.add(...classList);
 }
 
@@ -29,9 +29,17 @@ function setSquareClass(square, i) {
  * @param {Number} i - Square index in board
  * @returns {HTMLDivElement} Square
  */
-export function createSquare(i) {
+function create(i) {
   const square = document.createElement("div");
-  setSquareClass(square, i);
+  setInitialClass(square, i);
   square.setAttribute("index", i);
   return square;
 }
+
+function addClass(i, className) {
+  document.querySelector(`[index="${i}"]`).classList.add(className);
+}
+function removeClass(i, className) {
+  document.querySelector(`[index="${i}"]`).classList.remove(className);
+}
+export const square = { addClass, removeClass, create };
