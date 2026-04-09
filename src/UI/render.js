@@ -1,7 +1,7 @@
-import { boardState } from "./boardState.js";
-import { pieces } from "../Logic/piecesSymbols.js";
+import { pieces } from "../Data/symbols.js";
+import { boardState } from "../Logic/boardState.js";
 
-export function renderPieces() {
+export function render() {
   for (let i = 0; i < boardState.length; i++) {
     // const { row, col } = Board.getSquarePosition(i);
     const square = document.querySelector(`[index="${i}"]`);

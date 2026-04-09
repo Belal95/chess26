@@ -1,17 +1,5 @@
-/**
- * Object holding square's column & row
- * @typedef {Object} position
- * @property {number} col - Square's column
- * @property {number} row - Square's row
- */
-/**
- * Calculate Square's Row and Column from index
- * @param {number} i - Square index
- * @returns {position} { row , col }
- */
-const getSquarePosition = (i) => {
-  return { col: (i % 8) + 1, row: Math.floor(i / 8) + 1 };
-};
+import { getSquarePosition } from "../Logic/helpers.js";
+
 /**
  * Add to the class list light or dark class based on if the sum of row & column is odd or even
  * @param {String[]} classList - Square ClassList
@@ -41,28 +29,9 @@ function setSquareClass(square, i) {
  * @param {Number} i - Square index in board
  * @returns {HTMLDivElement} Square
  */
-function createSquare(i) {
+export function createSquare(i) {
   const square = document.createElement("div");
-  const { col, row } = getSquarePosition(i);
   setSquareClass(square, i);
   square.setAttribute("index", i);
   return square;
 }
-
-/**
- * Create the chess Board
- * Takes an empty element and creates make it the board
- * @param {HTMLDivElement} board - The element with id board
- */
-function createBoard(board) {
-  for (let i = 0; i < 64; i++) {
-    const square = createSquare(i);
-    board.appendChild(square);
-  }
-}
-export const Board = {
-  getSquarePosition,
-  setSquareColor,
-  createSquare,
-  createBoard,
-};
