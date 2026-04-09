@@ -49,3 +49,11 @@ body {
   height: 100%;
   cursor: pointer;
 }
+
+.selected {
+  overlay: blue;
+  /* background-color: blue !important; */
+}
+
+.validmove {
+}
