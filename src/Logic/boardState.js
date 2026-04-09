@@ -1,4 +1,5 @@
-const getFirstSquareIndexInRow = (row) => (row - 1) * 8;
+import { getRowFirstIndex } from "./helpers.js";
+
 /**
  * @param boardState The actual board state
  */
@@ -20,7 +21,7 @@ const fillBackRow = (row, color) => {
     "knight",
     "rook",
   ];
-  let index = getFirstSquareIndexInRow(row);
+  let index = getRowFirstIndex(row);
   backRow.forEach((type) => {
     boardState[index] = { type, color, index };
     index++;
@@ -33,7 +34,7 @@ const fillBackRow = (row, color) => {
  */
 const fillPawnRow = (row, color) => {
   const type = "pawn";
-  let index = getFirstSquareIndexInRow(row);
+  let index = getRowFirstIndex(row);
 
   for (let i = 0; i < 8; i++) {
     boardState[index] = { type, color, index };

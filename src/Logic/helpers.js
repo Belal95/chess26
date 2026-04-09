@@ -12,3 +12,4 @@
 export const getSquarePosition = (i) => {
   return { col: (i % 8) + 1, row: Math.floor(i / 8) + 1 };
 };
+export const getRowFirstIndex = (row) => (row - 1) * 8;
