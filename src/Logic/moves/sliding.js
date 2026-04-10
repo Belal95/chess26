@@ -1,6 +1,11 @@
 import { checkInBound, getIndex, getSquarePosition } from "../helpers.js";
 
-export function getSlidingMoves(piece, boardState, direction) {
+export function getSlidingMoves(
+  piece,
+  boardState,
+  direction,
+  noRepeat = false,
+) {
   const moves = [];
   const { color, index } = piece;
   const { col, row } = getSquarePosition(index);
@@ -20,7 +25,7 @@ export function getSlidingMoves(piece, boardState, direction) {
           break;
         } else if (targeState?.color === color) break;
       } else inBound = false;
-      if (piece.type === "king") inBound = false;
+      if (noRepeat) inBound = false;
       step++;
     }
   });
