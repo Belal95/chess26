@@ -2,18 +2,17 @@ import { boardState } from "../../Logic/boardState.js";
 import { render } from "../../UI/render.js";
 import { game } from "../../Logic/gameState.js";
 import { selection } from "./selection.js";
+import { movePiece } from "./movePiece.js";
 //Click section
 const { select, deselect } = selection;
-const move = (index) => {
+const move = (to) => {
   const active = game.getActive();
-  const i = active.index;
-  boardState[index] = active;
   deselect(active);
-  boardState[index].index = index;
-  boardState[i] = null;
+  movePiece(active, to);
   render();
   game.switchTurn();
 };
+
 const validMove = (index) => game.getActiveLegalMoves().includes(index);
 function handleFirstClick(clickedPiece) {
   const pieceColor = clickedPiece?.color;
