@@ -51,13 +51,24 @@ body {
 }
 
 .selected,
-.validMove {
+.validMove,
+.capture {
   position: relative;
 }
 .selected::after,
-.validMove::after {
+.validMove::after,
+.capture:after {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(255, 255, 0, 0.318);
+  background-color: rgb(255, 255, 0);
+  opacity: 0.3;
+}
+.selected::after {
+  background-color: green;
+}
+.validMove::after {
+}
+.capture::after {
+  background-color: red;
 }
