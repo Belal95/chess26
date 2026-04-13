@@ -16,7 +16,7 @@ const move = (index) => {
 };
 const validMove = (index) => game.getActiveLegalMoves().includes(index);
 export function handleClick(e) {
-  const turn = game.isWhite() === true ? "white" : "black";
+  const turn = game.isWhite() ? "white" : "black";
   /**
    * @type {HTMLElement} The current square clicked by the user
    */
@@ -34,7 +34,7 @@ export function handleClick(e) {
     }
   } else {
     // If a piece was selected
-    if (active === clickedPiece) {
+    if (active?.index === clickedPiece?.index) {
       // Clicked Same Piece
       deselect(active);
     } else if (pieceColor === turn) {
@@ -42,8 +42,6 @@ export function handleClick(e) {
       deselect(active);
       select(clickedPiece);
     } else if (validMove(index)) {
-      console.log(index);
-
       move(index);
       // Clicked on a valid square to move
     } else {

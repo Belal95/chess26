@@ -1,4 +1,3 @@
-import { game } from "../Logic/gameState.js";
 import { square } from "./square.js";
 
 const select = (piece, moves) => {
@@ -7,9 +6,9 @@ const select = (piece, moves) => {
     square.addClass(i, "validMove");
   });
 };
-const deselect = (piece) => {
+const deselect = (piece, moves) => {
   if (piece) square.removeClass(piece?.index, "selected");
-  game.getActiveLegalMoves().forEach((i) => {
+  moves.forEach((i) => {
     square.removeClass(i, "validMove");
   });
 };

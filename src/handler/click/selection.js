@@ -5,10 +5,11 @@ import { boardState as state } from "../../Logic/boardState.js";
 const select = (piece, boardState = state) => {
   const moves = getLegalMoves(piece, boardState);
   UI.select(piece, moves);
-  game.deselect(piece, moves);
+  game.select(piece, moves);
 };
 const deselect = (piece) => {
-  UI.deselect(piece);
+  const moves = game.getActiveLegalMoves();
+  UI.deselect(piece, moves);
   game.deselect();
 };
 

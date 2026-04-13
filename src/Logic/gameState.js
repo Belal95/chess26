@@ -23,7 +23,7 @@ const isWhite = () => white;
  * Switches the player's turn
  */
 const switchTurn = () => {
-  white = white ? false : true;
+  white = !white;
 };
 /**
  * Set the current legal moves for the active piece
@@ -46,7 +46,7 @@ const getActiveLegalMoves = () => activeLegalMoves;
  */
 const deselect = () => {
   game.setActive(null);
-  game.setActiveLegalMoves(null);
+  game.setActiveLegalMoves([]);
 };
 
 /**
