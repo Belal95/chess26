@@ -15,38 +15,42 @@ const move = (index) => {
   game.switchTurn();
 };
 const validMove = (index) => game.getActiveLegalMoves().includes(index);
-export function handleClick(e) {
+function handleFirstClick(clickedPiece) {
+  const pieceColor = clickedPiece?.color;
   const turn = game.isWhite() ? "white" : "black";
-  /**
-   * @type {HTMLElement} The current square clicked by the user
-   */
+
+  // If a piece is not selected
+  if (pieceColor === turn) {
+    // Clicked Own Piece
+    select(clickedPiece);
+  } else {
+    // Clicked enemy or empty piece
+  }
+}
+function handleSecondClick(active, clickedPiece, index) {
+  const pieceColor = clickedPiece?.color;
+  const turn = game.isWhite() ? "white" : "black";
+
+  // If a piece was selected
+  if (active?.index === clickedPiece?.index) {
+    // Clicked Same Piece
+    deselect(active);
+  } else if (pieceColor === turn) {
+    // Clicked different own piece
+    deselect(active);
+    select(clickedPiece);
+  } else if (validMove(index)) {
+    move(index);
+    // Clicked on a valid square to move
+  } else {
+    // Clicked on an invalid square
+    deselect(active);
+  }
+}
+export function handleClick(e) {
   const index = Number(e.target.closest(".square").getAttribute("index"));
   const clickedPiece = boardState[index];
-  const pieceColor = clickedPiece?.color;
   const active = game.getActive();
-  if (active === null) {
-    // If a piece is not selected
-    if (pieceColor === turn) {
-      // Clicked Own Piece
-      select(clickedPiece);
-    } else {
-      // Clicked enemy or empty piece
-    }
-  } else {
-    // If a piece was selected
-    if (active?.index === clickedPiece?.index) {
-      // Clicked Same Piece
-      deselect(active);
-    } else if (pieceColor === turn) {
-      // Clicked different own piece
-      deselect(active);
-      select(clickedPiece);
-    } else if (validMove(index)) {
-      move(index);
-      // Clicked on a valid square to move
-    } else {
-      // Clicked on an invalid square
-      deselect(active);
-    }
-  }
+  if (active === null) handleFirstClick(clickedPiece);
+  else handleSecondClick(active, clickedPiece, index);
 }
