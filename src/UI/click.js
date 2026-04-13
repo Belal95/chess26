@@ -2,17 +2,15 @@ import { boardState } from "../Logic/boardState.js";
 import { getLegalMoves } from "../Logic/moves/index.js";
 import { square } from "./square.js";
 import { render } from "./render.js";
-
+import { game } from "../Logic/gameState.js";
 //Click section
-let selectedPiece = null;
-let turn = "white";
-let moveList = [];
 const deselect = (piece) => {
   if (piece) square.removeClass(piece?.index, "selected");
+  const moveList = game.getActiveLegalMoves();
   moveList.forEach((i) => {
     square.removeClass(i, "validMove");
   });
-  selectedPiece = null;
+  game.setActive(null);
 };
 const select = (piece) => {
   if (piece) square.addClass(piece?.index, "selected");
@@ -20,27 +18,30 @@ const select = (piece) => {
   moves.forEach((i) => {
     square.addClass(i, "validMove");
   });
-  selectedPiece = piece;
-  moveList = moves;
+  game.setActive(piece);
+  game.setActiveLegalMoves(moves);
 };
 const move = (index) => {
-  boardState[index] = selectedPiece;
-  const i = selectedPiece.index;
-  deselect(selectedPiece);
+  const active = game.getActive();
+  const i = active.index;
+  boardState[index] = active;
+  deselect(active);
   boardState[index].index = index;
   boardState[i] = null;
   render();
-  turn = turn === "white" ? "black" : "white";
+  game.switchTurn();
 };
-const validMove = (index) => moveList.includes(index);
+const validMove = (index) => game.getActiveLegalMoves().includes(index);
 export function handleClick(e) {
+  const turn = game.isWhite() === true ? "white" : "black";
   /**
    * @type {HTMLElement} The current square clicked by the user
    */
   const index = Number(e.target.closest(".square").getAttribute("index"));
   const clickedPiece = boardState[index];
   const pieceColor = clickedPiece?.color;
-  if (selectedPiece === null) {
+  const active = game.getActive();
+  if (active === null) {
     // If a piece is not selected
     if (pieceColor === turn) {
       // Clicked Own Piece
@@ -50,19 +51,21 @@ export function handleClick(e) {
     }
   } else {
     // If a piece was selected
-    if (selectedPiece === clickedPiece) {
+    if (active === clickedPiece) {
       // Clicked Same Piece
-      deselect(selectedPiece);
+      deselect(active);
     } else if (pieceColor === turn) {
       // Clicked different own piece
-      deselect(selectedPiece);
+      deselect(active);
       select(clickedPiece);
     } else if (validMove(index)) {
+      console.log(index);
+
       move(index);
       // Clicked on a valid square to move
     } else {
       // Clicked on an invalid square
-      deselect(selectedPiece);
+      deselect(active);
     }
   }
 }
