@@ -1,3 +1,4 @@
+import { filterLegalMoves } from "../filterLegalMoves.js";
 import { getBishopMoves } from "./bishop.js";
 import { getKingMoves } from "./king.js";
 import { getKnightMoves } from "./knight.js";
@@ -11,7 +12,7 @@ import { getRookMoves } from "./rook.js";
  * @param {[Object]} boardState Holds the state of the board
  * @returns
  */
-export function getLegalMoves(piece, boardState) {
+export function getRawMoves(piece, boardState) {
   const { type } = piece;
   switch (type) {
     case "pawn":
@@ -28,4 +29,9 @@ export function getLegalMoves(piece, boardState) {
       return getQueenMoves(piece, boardState);
     default:
   }
+}
+
+export function getLegalMoves(piece, boardState) {
+  const rawMoves = getRawMoves(piece, boardState);
+  return filterLegalMoves(piece.index, rawMoves, piece.color);
 }

@@ -2,13 +2,14 @@ import { boardState } from "../../Logic/boardState.js";
 import { render } from "../../UI/render.js";
 import { game } from "../../Logic/gameState.js";
 import { selection } from "./selection.js";
-import { movePiece } from "./movePiece.js";
+import { movePiece } from "../../Logic/movePiece.js";
 //Click section
 const { select, deselect } = selection;
 const move = (to) => {
   const active = game.getActive();
+  const from = active?.index;
   deselect(active);
-  movePiece(active, to);
+  movePiece(boardState.get(), from, to);
   render();
   game.switchTurn();
 };
