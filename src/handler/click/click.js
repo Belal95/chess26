@@ -3,6 +3,8 @@ import { render } from "../../UI/render.js";
 import { game } from "../../Logic/gameState.js";
 import { selection } from "./selection.js";
 import { movePiece } from "../../Logic/movePiece.js";
+import { checkmate } from "../../Logic/hasLegalMoves.js";
+import { gameOver } from "../../UI/gameOver.js";
 //Click section
 const { select, deselect } = selection;
 const move = (to) => {
@@ -12,6 +14,9 @@ const move = (to) => {
   movePiece(boardState.get(), from, to);
   render();
   game.switchTurn();
+  const turn = game.isWhite() ? "white" : "black";
+  const isCheckMate = checkmate(turn, boardState.get());
+  if (!!isCheckMate) gameOver(isCheckMate, turn);
 };
 
 const validMove = (index) => game.getActiveLegalMoves().includes(index);
