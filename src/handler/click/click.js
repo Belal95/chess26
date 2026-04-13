@@ -48,7 +48,7 @@ function handleSecondClick(active, clickedPiece, index) {
 }
 export function handleClick(e) {
   const index = Number(e.target.closest(".square").getAttribute("index"));
-  const clickedPiece = boardState[index];
+  const clickedPiece = boardState.get()[index];
   const active = game.getActive();
   if (active === null) handleFirstClick(clickedPiece);
   else handleSecondClick(active, clickedPiece, index);
