@@ -1,26 +1,9 @@
-import { boardState } from "../Logic/boardState.js";
-import { getLegalMoves } from "../Logic/moves/index.js";
-import { square } from "./square.js";
-import { render } from "./render.js";
-import { game } from "../Logic/gameState.js";
+import { boardState } from "../../Logic/boardState.js";
+import { render } from "../../UI/render.js";
+import { game } from "../../Logic/gameState.js";
+import { selection } from "./selection.js";
 //Click section
-const deselect = (piece) => {
-  if (piece) square.removeClass(piece?.index, "selected");
-  const moveList = game.getActiveLegalMoves();
-  moveList.forEach((i) => {
-    square.removeClass(i, "validMove");
-  });
-  game.setActive(null);
-};
-const select = (piece) => {
-  if (piece) square.addClass(piece?.index, "selected");
-  const moves = getLegalMoves(piece, boardState);
-  moves.forEach((i) => {
-    square.addClass(i, "validMove");
-  });
-  game.setActive(piece);
-  game.setActiveLegalMoves(moves);
-};
+const { select, deselect } = selection;
 const move = (index) => {
   const active = game.getActive();
   const i = active.index;
