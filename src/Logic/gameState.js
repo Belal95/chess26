@@ -40,6 +40,25 @@ const getActiveLegalMoves = () => activeLegalMoves;
 /**
  * Object with methods to set and get active and move list
  */
+
+/**
+ * Nulls active piece and legal moves
+ */
+const deselect = () => {
+  game.setActive(null);
+  game.setActiveLegalMoves(null);
+};
+
+/**
+ * Put piece and legalMoves in the active state
+ * @param {Object} piece
+ * @param {Array} moves
+ */
+const select = (piece, moves) => {
+  game.setActive(piece);
+  game.setActiveLegalMoves(moves);
+};
+
 export const game = {
   setActive,
   getActive,
@@ -47,4 +66,6 @@ export const game = {
   switchTurn,
   setActiveLegalMoves,
   getActiveLegalMoves,
+  deselect,
+  select,
 };
