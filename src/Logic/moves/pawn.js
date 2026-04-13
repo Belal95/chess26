@@ -1,5 +1,10 @@
 import { getSquarePosition } from "../helpers.js";
-
+/**
+ * Get's legal moves for a pawn in a board state
+ * @param {Object} piece object holds the piece type,color and index in the state
+ * @param {[Object]} boardState Holds the state of the board
+ * @returns
+ */
 export function getPawnMoves(piece, boardState) {
   const moves = [];
   const { color, index } = piece;

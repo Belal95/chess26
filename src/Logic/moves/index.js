@@ -5,6 +5,12 @@ import { getPawnMoves } from "./pawn.js";
 import { getQueenMoves } from "./queen.js";
 import { getRookMoves } from "./rook.js";
 
+/**
+ * Get's legal moves for a piece in a board state
+ * @param {Object} piece object holds the piece type,color and index in the state
+ * @param {[Object]} boardState Holds the state of the board
+ * @returns
+ */
 export function getLegalMoves(piece, boardState) {
   const { type } = piece;
   switch (type) {
