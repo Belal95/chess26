@@ -1,9 +1,9 @@
 import { game } from "../../Logic/gameState.js";
 import { getLegalMoves } from "../../Logic/moves/index.js";
 import { UI } from "../../UI/UI.js";
-import { boardState as state } from "../../Logic/boardState.js";
-const select = (piece, boardState = state) => {
-  const moves = getLegalMoves(piece, boardState);
+import { boardState } from "../../Logic/boardState.js";
+const select = (piece, state = boardState) => {
+  const moves = getLegalMoves(piece, state);
   UI.select(piece, moves);
   game.select(piece, moves);
 };
