@@ -3,7 +3,7 @@ import { getRowFirstIndex } from "./helpers.js";
 /**
  * @param boardState The actual board state
  */
-export const boardState = new Array(64).fill(null);
+export const state = new Array(64).fill(null);
 
 /**
  * Fills board state black or white back row with pieces, takes row number and pieces color
@@ -23,7 +23,7 @@ const fillBackRow = (row, color) => {
   ];
   let index = getRowFirstIndex(row);
   backRow.forEach((type) => {
-    boardState[index] = { type, color, index };
+    state[index] = { type, color, index };
     index++;
   });
 };
@@ -37,7 +37,7 @@ const fillPawnRow = (row, color) => {
   let index = getRowFirstIndex(row);
 
   for (let i = 0; i < 8; i++) {
-    boardState[index] = { type, color, index };
+    state[index] = { type, color, index };
     index++;
   }
 };
@@ -46,3 +46,11 @@ fillBackRow(1, "black");
 fillPawnRow(2, "black");
 fillPawnRow(7, "white");
 fillBackRow(8, "white");
+
+const set = (newState) => {
+  state = newState;
+};
+const get = () => state;
+const getCopy = () => structuredClone(boardState);
+
+export const boardState = { get, set, getCopy };
