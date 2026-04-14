@@ -1,6 +1,17 @@
+/**
+ * Holds current selected Piece
+ */
 let active = null;
+/**
+ * Holds true if white turn and false if blacks turn
+ */
 let white = true;
+/**
+ * Holds all the legal move for the selected piece
+ */
 let activeLegalMoves = [];
+
+let pendingPromotion = null;
 
 /**
  * Set the currently selected piece by the player
@@ -38,8 +49,17 @@ const setActiveLegalMoves = (moves) => {
  */
 const getActiveLegalMoves = () => activeLegalMoves;
 /**
- * Object with methods to set and get active and move list
+ * Set Pending Promotion
+ * @param {Object} pawn A pawn that's pending promotion
  */
+const setPendingPromotion = (pawn) => {
+  pendingPromotion = pawn;
+};
+/**
+ * Returns the pawn pending promotion or null
+ * @returns {Object|null} Get pending promotion
+ */
+const getPendingPromotion = () => pendingPromotion;
 
 /**
  * Nulls active piece and legal moves
@@ -68,4 +88,6 @@ export const game = {
   getActiveLegalMoves,
   deselect,
   select,
+  getPendingPromotion,
+  setPendingPromotion,
 };
