@@ -1,7 +1,7 @@
 /**
  * @param pieces Contain Piece Symbols
  */
-export const pieces = {
+export const piecesSymbols = {
   white: {
     king: "♔",
     queen: "♕",

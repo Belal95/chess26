@@ -1,7 +1,7 @@
-import { pieces } from "../Data/symbols.js";
+import { piecesSymbols } from "../Data/symbols.js";
 import { boardState } from "../Logic/boardState.js";
 /**
- * Render Pieces from the board state to the ui board
+ * Render piecesSymbols from the board state to the ui board
  */
 export function render() {
   const state = boardState.get();
@@ -12,7 +12,7 @@ export function render() {
       const { type, color } = state[i];
       const div = document.createElement("div");
       div.classList = "piece";
-      div.innerHTML = `${pieces[`${color}`][`${type}`]}`;
+      div.innerHTML = `${piecesSymbols[`${color}`][`${type}`]}`;
       square.innerHTML = null;
       square.appendChild(div);
     }
