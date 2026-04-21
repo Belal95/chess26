@@ -4,6 +4,9 @@
   --text-color: #000;
   --primary-color: rgb(255, 255, 255);
   --secondary-color: rgba(0, 0, 0, 0.459);
+  --selected-color: green;
+  --valid-move-color: yellow;
+  --capture-color: red;
   /* Board size */
   /* --board-size: 512px; */
 }
@@ -64,11 +67,11 @@ body {
   opacity: 0.3;
 }
 .selected::after {
-  background-color: green;
+  background-color: var(--selected-color);
 }
 .validMove::after {
-  background-color: yellow;
+  background-color: var(--valid-move-color);
 }
 .capture::after {
-  background-color: red;
+  background-color: var(--capture-color);
 }
