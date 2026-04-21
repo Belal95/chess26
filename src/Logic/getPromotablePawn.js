@@ -1,14 +1,7 @@
 import { getSquarePosition } from "./helpers.js";
 /**
- * Return the pawn to promote
- * @param {[{}]} boardState Board State to check
- * @returns Pawn waiting promotion
- */
-export const getPromotablePawn = (boardState) =>
-  getPawns(boardState).filter((pawn) => canPawnPromote(pawn))[0] || null;
-/**
  *
- * @param {[{}]} boardState Board State to check
+ * @param {[Object]} boardState Board State to check
  * @returns {Array} Array of all pawns in Board State
  */
 const getPawns = (boardState) =>
@@ -23,3 +16,10 @@ const canPawnPromote = (pawn) => {
   const promotionRow = pawn.color === "black" ? 8 : 1;
   return row === promotionRow;
 };
+/**
+ * Return the pawn to promote
+ * @param {[Object]} boardState Board State to check
+ * @returns Pawn waiting promotion
+ */
+export const getPromotablePawn = (boardState) =>
+  getPawns(boardState).filter((pawn) => canPawnPromote(pawn))[0] || null;
