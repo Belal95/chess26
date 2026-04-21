@@ -5,10 +5,17 @@ import { selection } from "./selection.js";
 import { movePiece } from "../../Logic/movePiece.js";
 import { checkmate } from "../../Logic/hasLegalMoves.js";
 import { gameOver } from "../../UI/gameOver.js";
-//Click section
 const { select, deselect } = selection;
+
+/**
+ * Move the currently selected piece to a an index index
+ * @param {Number} to the index to move to
+ *
+ */
 const move = (to) => {
+  // Get Selected Piece
   const active = game.getActive();
+  // Get Selected Piece current position
   const from = active?.index;
   deselect(active);
   movePiece(boardState.get(), from, to);
@@ -18,8 +25,16 @@ const move = (to) => {
   const isCheckMate = checkmate(turn, boardState.get());
   if (!!isCheckMate) gameOver(isCheckMate, turn);
 };
-
+/**
+ * Check the if the a move is present in the selected piece legal move array
+ * @param {Number} index index to move to
+ * @returns True if valid
+ */
 const validMove = (index) => game.getActiveLegalMoves().includes(index);
+/**
+ * Handel the first click interaction on a board
+ * @param {*} clickedPiece
+ */
 function handleFirstClick(clickedPiece) {
   const pieceColor = clickedPiece?.color;
   const turn = game.isWhite() ? "white" : "black";
@@ -32,6 +47,12 @@ function handleFirstClick(clickedPiece) {
     // Clicked enemy or empty piece
   }
 }
+/**
+ * Handel the second click interaction on a board
+ * @param {*} active
+ * @param {*} clickedPiece
+ * @param {*} index
+ */
 function handleSecondClick(active, clickedPiece, index) {
   const pieceColor = clickedPiece?.color;
   const turn = game.isWhite() ? "white" : "black";
@@ -52,6 +73,10 @@ function handleSecondClick(active, clickedPiece, index) {
     deselect(active);
   }
 }
+/**
+ * Handel any click interaction on the board
+ * @param {*} e
+ */
 export function handleClick(e) {
   const index = Number(e.target.closest(".square").getAttribute("index"));
   const clickedPiece = boardState.get()[index];
