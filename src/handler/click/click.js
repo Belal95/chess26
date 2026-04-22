@@ -5,6 +5,8 @@ import { selection } from "./selection.js";
 import { movePiece } from "../../Logic/movePiece.js";
 import { checkmate } from "../../Logic/hasLegalMoves.js";
 import { gameOver } from "../../UI/gameOver.js";
+import { getPromotablePawn } from "../../Logic/getPromotablePawn.js";
+import { showPromotionModal } from "../../UI/promotionModal.js";
 const { select, deselect } = selection;
 
 /**
@@ -12,18 +14,51 @@ const { select, deselect } = selection;
  * @param {Number} to the index to move to
  *
  */
-const move = (to) => {
+const moveActivePiece = (to) => {
   // Get Selected Piece
   const active = game.getActive();
   // Get Selected Piece current position
   const from = active?.index;
   deselect(active);
   movePiece(boardState.get(), from, to);
-  render();
-  game.switchTurn();
-  const turn = game.isWhite() ? "white" : "black";
+};
+/**
+ * Check if there is a promotable pawn and promote it.
+ */
+const promoting = () => {
+  const promotablePawn = getPromotablePawn(boardState.get());
+  if (!!promotablePawn) {
+    game.setPendingPromotion(promotablePawn);
+    const turn = game.getPlayerTurn();
+    showPromotionModal(turn, (piece) => {
+      promotablePawn.type = piece;
+      game.setPendingPromotion(null);
+      render();
+      afterMove();
+    });
+    return true;
+  } else return false;
+};
+/**
+ * Check about checkmates, stalemates or draws and end the game if any was found
+ */
+const handleWinConditions = () => {
+  const turn = game.getPlayerTurn();
   const isCheckMate = checkmate(turn, boardState.get());
   if (!!isCheckMate) gameOver(isCheckMate, turn);
+};
+const afterMove = () => {
+  game.switchTurn();
+  handleWinConditions();
+};
+/**
+ * Handel Move Logic
+ * @param {Number} to the index to move to
+ */
+const move = (to) => {
+  moveActivePiece(to);
+  render();
+  if (!promoting()) afterMove(); // Either Handel Promotion or finalize the move
 };
 /**
  * Check the if the a move is present in the selected piece legal move array
@@ -37,7 +72,7 @@ const validMove = (index) => game.getActiveLegalMoves().includes(index);
  */
 function handleFirstClick(clickedPiece) {
   const pieceColor = clickedPiece?.color;
-  const turn = game.isWhite() ? "white" : "black";
+  const turn = game.getPlayerTurn();
 
   // If a piece is not selected
   if (pieceColor === turn) {
@@ -55,7 +90,7 @@ function handleFirstClick(clickedPiece) {
  */
 function handleSecondClick(active, clickedPiece, index) {
   const pieceColor = clickedPiece?.color;
-  const turn = game.isWhite() ? "white" : "black";
+  const turn = game.getPlayerTurn();
 
   // If a piece was selected
   if (active?.index === clickedPiece?.index) {
@@ -78,9 +113,13 @@ function handleSecondClick(active, clickedPiece, index) {
  * @param {*} e
  */
 export function handleClick(e) {
-  const index = Number(e.target.closest(".square").getAttribute("index"));
-  const clickedPiece = boardState.get()[index];
-  const active = game.getActive();
-  if (active === null) handleFirstClick(clickedPiece);
-  else handleSecondClick(active, clickedPiece, index);
+  if (!!game.getPendingPromotion()) {
+    return;
+  } else {
+    const index = Number(e.target.closest(".square").getAttribute("index"));
+    const clickedPiece = boardState.get()[index];
+    const active = game.getActive();
+    if (active === null) handleFirstClick(clickedPiece);
+    else handleSecondClick(active, clickedPiece, index);
+  }
 }
