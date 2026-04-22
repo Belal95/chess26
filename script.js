@@ -6,4 +6,3 @@ export const board = document.getElementById("board");
 createBoard(board);
 render();
 board.addEventListener("click", handleClick);
-showPromotionModal();
