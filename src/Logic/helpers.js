@@ -1,18 +1,39 @@
 /**
- * Object holding square's column & row
- * @typedef {Object} position
- * @property {number} col - Square's column
- * @property {number} row - Square's row
- */
-/**
  * Calculate Square's Row and Column from index
  * @param {number} i - Square index
- * @returns {position} { row , col }
+ * @returns {{ row , col }}
  */
 export const getSquarePosition = (i) => {
   return { col: (i % 8) + 1, row: Math.floor(i / 8) + 1 };
 };
+/**
+ * Get first index of a row
+ * @param {Number} row
+ * @returns
+ */
 export const getRowFirstIndex = (row) => (row - 1) * 8;
+/**
+ * Get Index from row and column
+ * @param {*} col
+ * @param {*} row
+ * @returns
+ */
 export const getIndex = (col, row) => (row - 1) * 8 + (col - 1);
+/**
+ * Check if a square is inside the 64*64 grid using row and column
+ * @param {*} col
+ * @param {*} row
+ * @returns
+ */
 export const checkInBound = (col, row) =>
   col >= 1 && col <= 8 && row >= 1 && row <= 8;
+/**
+ * Get all squares indexes between 2 numbers
+ * @param {Number} from
+ * @param {Number} to
+ * @returns {Number}
+ */
+export const squaresBetween = (from, to) => {
+  const [min, max] = from > to ? [from, to] : [to, from];
+  return Array.from({ length: max - min - 1 }, (_, i) => start + i + 1);
+};
