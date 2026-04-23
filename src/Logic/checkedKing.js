@@ -1,6 +1,6 @@
 import { getRawMoves } from "./moves/index.js";
 /**
- *
+ * Check If the king is currently in check
  * @param {'white'|'black'} color
  * @param {[{color,type,index,hasMoved}]} boardState
  * @returns
