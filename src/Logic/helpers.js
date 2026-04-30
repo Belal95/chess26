@@ -33,8 +33,8 @@ const checkInBound = (col, row) => col >= 1 && col <= 8 && row >= 1 && row <= 8;
  * @returns {[Number]}
  */
 const squaresBetween = (from, to) => {
-  const [min, max] = from > to ? [from, to] : [to, from];
-  return Array.from({ length: max - min - 1 }, (_, i) => start + i + 1);
+  const [min, max] = from < to ? [from, to] : [to, from];
+  return Array.from({ length: max - min - 1 }, (_, i) => min + i + 1);
 };
 
 export {
