@@ -9,9 +9,9 @@ import { simulateMove } from "./simulateMove.js";
 const getCastlingRooks = (king, boardState) =>
   boardState.filter(
     (piece) =>
-      piece.type === "rook" &&
-      piece.color === king.color &&
-      piece.hasMoved === false,
+      piece?.type === "rook" &&
+      piece?.color === king.color &&
+      piece?.hasMoved === false,
   );
 /**
  * Get valid castling moves
