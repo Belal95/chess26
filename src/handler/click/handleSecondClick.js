@@ -1,10 +1,12 @@
 import { game } from "../../Logic/gameState.js";
-import { checkmate } from "../../Logic/hasLegalMoves.j";
 import { gameOver } from "../../UI/gameOver.js";
 import { render } from "../../UI/render.js";
 import { selection } from "./selection.js";
 import { getPromotablePawn } from "../../Logic/getPromotablePawn.js";
 import { showPromotionModal } from "../../UI/promotionModal.js";
+import { checkmate } from "../../Logic/hasLegalMoves.js";
+import { movePiece } from "../../Logic/movePiece.js";
+import { boardState } from "../../Logic/boardState.js";
 const { select, deselect } = selection;
 
 /**
