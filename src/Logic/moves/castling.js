@@ -1,6 +1,6 @@
-import { checkedKing } from "./checkedKing.js";
-import { squaresBetween } from "./helpers.js";
-import { simulateMove } from "./simulateMove.js";
+import { checkedKing } from "../checkedKing.js";
+import { squaresBetween } from "../helpers.js";
+import { simulateMove } from "../simulateMove.js";
 /**
  * Get valid castling moves
  * @param {{color,type,index,hasMoved}} king
