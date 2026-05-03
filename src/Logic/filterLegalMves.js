@@ -9,6 +9,7 @@ import { simulateMove } from "./simulateMove.js";
  * @param {"white"|"black"} color The color of the piece
  * @returns {Number[]} All Legal Moves
  */
+
 export const filterLegalMoves = (from, moves, color) => {
   return moves.filter((to) => {
     const stateCopy = simulateMove(boardState.get(), from, to);
