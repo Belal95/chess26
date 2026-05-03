@@ -1,7 +1,11 @@
+/**
+ *   @import {Piece} from "../types.js"
+ */
+
 import { getSquarePosition } from "./helpers.js";
 /**
  *
- * @param {[{color,type,index,hasMoved}]} boardState Board State to check
+ * @param {Piece[]} boardState Board State to check
  * @returns {Array} Array of all pawns in Board State
  */
 const getPawns = (boardState) =>
@@ -9,8 +13,8 @@ const getPawns = (boardState) =>
 
 /**
  * Return true if the pawn can promote and false otherwise
- * @param {Object} pawn pawn to check if waiting promotion
- * @returns True | False
+ * @param {Piece} pawn pawn to check if waiting promotion
+ * @returns
  */
 const canPawnPromote = (pawn) => {
   const { row } = getSquarePosition(pawn.index);
@@ -19,8 +23,8 @@ const canPawnPromote = (pawn) => {
 };
 /**
  * Return the pawn to promote
- * @param {[{color,type,index,hasMoved}]} boardState Board State to check
- * @returns Pawn waiting promotion
+ * @param {Piece[]} boardState Board State to check
+ * @returns {Piece|Null}Pawn waiting promotion
  */
 export const getPromotablePawn = (boardState) =>
   getPawns(boardState).filter((pawn) => canPawnPromote(pawn))[0] || null;

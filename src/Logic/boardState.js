@@ -1,7 +1,10 @@
+/**
+ *   @import {Piece} from "../types.js"
+ */
 import { getRowFirstIndex } from "./helpers.js";
 
 /**
- * @param boardState The actual board state
+ * @type {(Piece|Null)[]} The initial board state
  */
 const state = new Array(64).fill(null);
 
@@ -28,6 +31,7 @@ const fillBackRow = (row, color) => {
     index++;
   });
 };
+
 /**
  * Fills board state black or white second row with pawns, takes row number and pieces color
  * @param {Number} row - row number that needs to be filled

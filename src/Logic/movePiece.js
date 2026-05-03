@@ -1,8 +1,11 @@
+/**
+ *   @import {Piece} from "../types.js"
+ */
 import { game } from "./gameState.js";
 import { getIndex, getSquarePosition } from "./helpers.js";
 /**
  * Handle castling move
- * @param {[{color,type,index,hasMoved}]} boardState the current board state
+ * @param {Piece[]} boardState the current board state
  * @param {Number} from index to move from
  * @param {Number} to index to move
  */
@@ -16,9 +19,9 @@ function handleCastling(boardState, from, to) {
 /**
  * Move a piece from an index to an other index using just the indexes
  *
- * @param {[{color,type,index,hasMoved}]} boardState the current board state
+ * @param {Piece[]} boardState the current board state
  * @param {Number} from index to move from
- * @param {Number} to index to move
+ * @param {Number} to index to move to
  * @param {Boolean} recordMove Optional to not record the current move
  */
 export const movePiece = (boardState, from, to, recordMove = true) => {

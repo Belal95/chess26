@@ -1,9 +1,13 @@
+/**
+ *   @import {Piece} from "../types.js"
+ */
+
 import { movePiece } from "./movePiece.js";
 /**
- * Simulate a move on a copy of the sent boeardstate
- * @param {*} boardState
- * @param {*} from
- * @param {*} to
+ * Simulate a move on a copy of the sent boardState
+ * @param {Piece[]} boardState
+ * @param {Number} from
+ * @param {Number} to
  * @returns
  */
 export const simulateMove = (boardState, from, to) => {

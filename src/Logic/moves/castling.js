@@ -1,10 +1,14 @@
+/**
+ *   @import {Piece} from "../../types.js"
+ */
+
 import { checkedKing } from "../checkedKing.js";
 import { squaresBetween } from "../helpers.js";
 import { simulateMove } from "../simulateMove.js";
 /**
  * Get valid castling moves
- * @param {{color,type,index,hasMoved}} king
- * @param {[{color,type,index,hasMoved}]} boardState
+ * @param {Piece} king object holds the king's type,color and index in the state
+ * @param {(Piece|Null)[]} boardState Holds the state of the board
  */
 const getCastlingRooks = (king, boardState) =>
   boardState.filter(
@@ -16,7 +20,7 @@ const getCastlingRooks = (king, boardState) =>
 /**
  * Get valid castling moves
  * @param {{color,type,index,hasMoved}} king
- * @param {[{color,type,index,hasMoved}]} boardState
+ * @param {(Piece|Null)[]} boardState
  */
 export function getCastlingMoves(king, boardState) {
   const moves = [];

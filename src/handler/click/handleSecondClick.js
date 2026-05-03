@@ -8,7 +8,9 @@ import { checkmate } from "../../Logic/hasLegalMoves.js";
 import { movePiece } from "../../Logic/movePiece.js";
 import { boardState } from "../../Logic/boardState.js";
 const { select, deselect } = selection;
-
+/**
+ *   @import {Piece} from "../../types.js"
+ */
 /**
  * Check if there is a promotable pawn and promote it.
  */
@@ -72,24 +74,24 @@ const move = (to) => {
  */
 const validMove = (index) => game.getActiveLegalMoves().includes(index);
 /**
- * Handel the second click interaction on a board
- * @param {*} active
- * @param {*} clickedPiece
- * @param {*} index
+ * Handle the second click interaction on a board
+ * @param {Piece} active The current active piece
+ * @param {Piece|Null} clickedSquare the second square to be clicked
+ * @param {Number} index
  */
 
-export function handleSecondClick(active, clickedPiece, index) {
-  const pieceColor = clickedPiece?.color;
+export function handleSecondClick(active, clickedSquare, index) {
+  const pieceColor = clickedSquare?.color;
   const turn = game.getPlayerTurn();
 
   // If a piece was selected
-  if (active?.index === clickedPiece?.index) {
+  if (active?.index === clickedSquare?.index) {
     // Clicked Same Piece
     deselect(active);
   } else if (pieceColor === turn) {
     // Clicked different own piece
     deselect(active);
-    select(clickedPiece);
+    select(clickedSquare);
   } else if (validMove(index)) {
     move(index);
     // Clicked on a valid square to move

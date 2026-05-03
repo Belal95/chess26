@@ -1,9 +1,13 @@
+/**
+ *   @import {Piece} from "../types.js"
+ */
+
 import { checkedKing } from "./checkedKing.js";
 import { getLegalMoves } from "./moves/index.js";
 /**
  * Search if a color has any legal moves or no
  * @param {String} color
- * @param {Array} boardState
+ * @param {Piece[]} boardState
  * @returns {Boolean}
  */
 
