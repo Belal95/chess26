@@ -1,7 +1,7 @@
 import { game } from "../../Logic/gameState.js";
 import { selection } from "./selection.js";
 /**
- * Handel the first click interaction on a board
+ * Handle the first click interaction on a board
  * @param {*} clickedPiece
  */
 export function handleFirstClick(clickedPiece) {

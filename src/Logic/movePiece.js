@@ -1,5 +1,10 @@
 import { getIndex, getSquarePosition } from "./helpers.js";
-
+/**
+ * Handle castling move
+ * @param {[{color,type,index,hasMoved}]} boardState the current board state
+ * @param {Number} from index to move from
+ * @param {Number} to index to move
+ */
 function handleCastling(boardState, from, to) {
   const direction = to - from > 0 ? 1 : -1;
   const { row } = getSquarePosition(from);

@@ -4,8 +4,8 @@ import { handleFirstClick } from "./handelFirstClick.js";
 import { handleSecondClick } from "./handleSecondClick.js";
 
 /**
- * Handel any click interaction on the board
- * @param {*} e
+ * Handle any click interaction on the board
+ * @param {Event} e The event object
  */
 export function handleClick(e) {
   if (!!game.getPendingPromotion()) {
