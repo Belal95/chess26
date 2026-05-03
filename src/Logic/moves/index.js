@@ -10,6 +10,7 @@ import { getKnightMoves } from "./knight.js";
 import { getPawnMoves } from "./pawn.js";
 import { getQueenMoves } from "./queen.js";
 import { getRookMoves } from "./rook.js";
+import { getEnPassantMoves } from "./enPassant.js";
 
 /**
  * Get's legal moves for a piece in a board state
@@ -21,7 +22,7 @@ export function getRawMoves(piece, boardState) {
   const { type } = piece;
   switch (type) {
     case "pawn":
-      return getPawnMoves(piece, boardState);
+      return [...getPawnMoves(piece, boardState), ...getEnPassantMoves(piece)];
     case "bishop":
       return getBishopMoves(piece, boardState);
     case "knight":
