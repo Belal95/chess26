@@ -5,7 +5,7 @@ let active = null;
 /**
  * Holds true if white turn and false if blacks turn
  */
-let white = true;
+let turn = "white";
 /**
  * Holds all the legal move for the selected piece
  */
@@ -27,14 +27,14 @@ const setActive = (piece) => {
 const getActive = () => active;
 /**
  * Get the current player turn
- * @returns True if it's white's turn and false if it's black's turn.
+ * @returns {'white'|'black'} white or black
  */
-const isWhite = () => white;
+const getPlayerTurn = () => turn;
 /**
  * Switches the player's turn
  */
 const switchTurn = () => {
-  white = !white;
+  turn = turn === "white" ? "black" : "white";
 };
 /**
  * Set the current legal moves for the active piece
@@ -82,7 +82,7 @@ const select = (piece, moves) => {
 export const game = {
   setActive,
   getActive,
-  isWhite,
+  getPlayerTurn,
   switchTurn,
   setActiveLegalMoves,
   getActiveLegalMoves,

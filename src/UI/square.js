@@ -37,9 +37,11 @@ function create(i) {
 }
 
 function addClass(i, className) {
-  document.querySelector(`[index="${i}"]`).classList.add(className);
+  const square = document.querySelector(`[index="${i}"]`);
+  if (square) square.classList.add(className);
 }
 function removeClass(i, className) {
-  document.querySelector(`[index="${i}"]`).classList.remove(className);
+  const square = document.querySelector(`[index="${i}"]`);
+  if (square) square.classList.remove(className);
 }
 export const square = { addClass, removeClass, create };

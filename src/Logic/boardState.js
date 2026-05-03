@@ -23,7 +23,8 @@ const fillBackRow = (row, color) => {
   ];
   let index = getRowFirstIndex(row);
   backRow.forEach((type) => {
-    state[index] = { type, color, index };
+    const tracked = type === "rook" || type === "king";
+    state[index] = { type, color, index, ...(tracked && { hasMoved: false }) };
     index++;
   });
 };

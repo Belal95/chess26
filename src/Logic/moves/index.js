@@ -1,3 +1,4 @@
+import { getCastlingMoves } from "./castling.js";
 import { filterLegalMoves } from "../filterLegalMoves.js";
 import { getBishopMoves } from "./bishop.js";
 import { getKingMoves } from "./king.js";
@@ -24,7 +25,10 @@ export function getRawMoves(piece, boardState) {
     case "rook":
       return getRookMoves(piece, boardState);
     case "king":
-      return getKingMoves(piece, boardState);
+      return [
+        ...getKingMoves(piece, boardState),
+        ...getCastlingMoves(piece, boardState),
+      ];
     case "queen":
       return getQueenMoves(piece, boardState);
     default:
