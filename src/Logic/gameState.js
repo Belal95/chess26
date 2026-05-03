@@ -112,6 +112,13 @@ const select = (piece, moves) => {
 const getMoveHistory = () => moveHistory;
 
 /**
+ * Gets the last move
+ * @returns {Move}
+ */
+
+const getLastMove = () => moveHistory.at(-1);
+
+/**
  * Append a move to the move history array
  * @param {Move} move
  */
@@ -136,5 +143,6 @@ export const game = {
   getPendingPromotion,
   setPendingPromotion,
   getMoveHistory,
+  getLastMove,
   addMove,
 };
