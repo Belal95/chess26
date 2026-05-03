@@ -1,3 +1,4 @@
+import { game } from "./gameState.js";
 import { getIndex, getSquarePosition } from "./helpers.js";
 /**
  * Handle castling move
@@ -10,7 +11,7 @@ function handleCastling(boardState, from, to) {
   const { row } = getSquarePosition(from);
   const rookFrom = direction === 1 ? getIndex(8, row) : getIndex(1, row);
   const rookTo = from + direction;
-  movePiece(boardState, rookFrom, rookTo);
+  movePiece(boardState, rookFrom, rookTo, false);
 }
 /**
  * Move a piece from an index to an other index using just the indexes
@@ -18,8 +19,10 @@ function handleCastling(boardState, from, to) {
  * @param {[{color,type,index,hasMoved}]} boardState the current board state
  * @param {Number} from index to move from
  * @param {Number} to index to move
+ * @param {Boolean} recordMove Optional to not record the current move
  */
-export const movePiece = (boardState, from, to) => {
+export const movePiece = (boardState, from, to, recordMove = true) => {
+  if (recordMove) game.addMove({ piece: { ...boardState[from] }, to, from });
   boardState[to] = boardState[from];
   boardState[to].index = to;
   const isCastling =

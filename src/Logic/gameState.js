@@ -1,4 +1,13 @@
 /**
+ * @typedef {Object} Move
+ * @property {Object} piece - The piece being moved.
+ * @property {string} piece.type - The type of piece (e.g., 'pawn').
+ * @property {"white"|"black"} piece.color - The color of the piece (e.g., 'white').
+ * @property {number} from - The starting square index.
+ * @property {number} to - The destination square index.
+ */
+
+/**
  * Holds current selected Piece
  */
 let active = null;
@@ -10,8 +19,16 @@ let turn = "white";
  * Holds all the legal move for the selected piece
  */
 let activeLegalMoves = [];
-
+/**
+ * Holds if there is a promotion pending
+ */
 let pendingPromotion = null;
+
+/**
+ * The move history array
+ * @type {Move[]}
+ */
+let moveHistory = [];
 
 /**
  * Set the currently selected piece by the player
@@ -78,6 +95,21 @@ const select = (piece, moves) => {
   game.setActive(piece);
   game.setActiveLegalMoves(moves);
 };
+/**
+ * Gets the move history array
+ * @returns {Move[]}
+ */
+const getMoveHistory = () => moveHistory;
+
+/**
+ * Append a move to the move history array
+ * @param {Move} move
+ */
+const addMove = (move) => {
+  delete move.piece.index;
+  delete move.piece.hasMoved;
+  moveHistory.push(move);
+};
 
 export const game = {
   setActive,
@@ -90,4 +122,6 @@ export const game = {
   select,
   getPendingPromotion,
   setPendingPromotion,
+  getMoveHistory,
+  addMove,
 };
