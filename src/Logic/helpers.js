@@ -1,7 +1,7 @@
 /**
  * Calculate Square's Row and Column from index
  * @param {number} i - Square index
- * @returns {{ row , col }}
+ * @returns {{ row:Number , col:Number }}
  */
 const getSquarePosition = (i) => {
   return { col: (i % 8) + 1, row: Math.floor(i / 8) + 1 };
@@ -14,15 +14,15 @@ const getSquarePosition = (i) => {
 const getRowFirstIndex = (row) => (row - 1) * 8;
 /**
  * Get Index from row and column
- * @param {*} col
- * @param {*} row
+ * @param {Number} col
+ * @param {Number} row
  * @returns
  */
 const getIndex = (col, row) => (row - 1) * 8 + (col - 1);
 /**
  * Check if a square is inside the 64*64 grid using row and column
- * @param {*} col
- * @param {*} row
+ * @param {Number} col
+ * @param {Number} row
  * @returns
  */
 const checkInBound = (col, row) => col >= 1 && col <= 8 && row >= 1 && row <= 8;

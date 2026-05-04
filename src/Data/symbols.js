@@ -1,5 +1,6 @@
 /**
- * @param pieces Contain Piece Symbols
+ * Contain Piece Symbols
+ * TODO: Change symbols to pictures
  */
 export const piecesSymbols = {
   white: {

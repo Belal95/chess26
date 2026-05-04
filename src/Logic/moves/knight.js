@@ -1,9 +1,13 @@
+/**
+ *   @import {Piece} from "../../types.js"
+ */
+
 import { checkInBound, getIndex, getSquarePosition } from "../helpers.js";
 import { direction } from "./direction.js";
 /**
  * Get's legal moves for a knight in a board state
- * @param {Object} piece object holds the piece type,color and index in the state
- * @param {[Object]} boardState Holds the state of the board
+ * @param {Piece} piece object holds the piece type,color and index in the state
+ * @param {(Piece|Null)[]} boardState Holds the state of the board
  * @returns
  */
 export function getKnightMoves(piece, boardState) {

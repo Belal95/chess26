@@ -12,9 +12,9 @@ export function handleClick(e) {
     return;
   } else {
     const index = Number(e.target.closest(".square").getAttribute("index"));
-    const clickedPiece = boardState.get()[index];
+    const clickedSquare = boardState.get()[index];
     const active = game.getActive();
-    if (active === null) handleFirstClick(clickedPiece);
-    else handleSecondClick(active, clickedPiece, index);
+    if (active === null) handleFirstClick(clickedSquare);
+    else handleSecondClick(active, clickedSquare, index);
   }
 }

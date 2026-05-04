@@ -1,8 +1,12 @@
+/**
+ *   @import {Piece} from "../types.js"
+ */
+
 import { getRawMoves } from "./moves/index.js";
 /**
  * Check If the king is currently in check
  * @param {'white'|'black'} color
- * @param {[{color,type,index,hasMoved}]} boardState
+ * @param {(Piece|Null)[]} boardState Holds the state of the board
  * @returns
  */
 export const checkedKing = (color, boardState) => {
