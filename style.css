@@ -92,3 +92,13 @@ body {
 #promotion_modal div:hover {
   background-color: var(--highlight-color);
 }
+#win {
+  display: flex;
+  flex-grow: grow;
+  justify-content: center;
+  border: 1px solid #000;
+  border-radius: 1rem;
+  padding: 15px;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}

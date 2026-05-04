@@ -7,6 +7,7 @@ import { showPromotionModal } from "../../UI/promotionModal.js";
 import { checkmate } from "../../Logic/hasLegalMoves.js";
 import { movePiece } from "../../Logic/movePiece.js";
 import { boardState } from "../../Logic/boardState.js";
+import { updateTurnIndicator } from "../../UI/updateTurnIndicator.js";
 const { select, deselect } = selection;
 /**
  *   @import {Piece} from "../../types.js"
@@ -35,7 +36,10 @@ export const promoting = () => {
 const handleWinConditions = () => {
   const turn = game.getPlayerTurn();
   const isCheckMate = checkmate(turn, boardState.get());
-  if (!!isCheckMate) gameOver(isCheckMate, turn);
+  if (!!isCheckMate) {
+    gameOver(isCheckMate, turn);
+    return false;
+  } else return true;
 };
 /**
  * Move the currently selected piece to a an index index
@@ -56,7 +60,9 @@ const moveActivePiece = (to) => {
  */
 const afterMove = () => {
   game.switchTurn();
-  handleWinConditions();
+  if (handleWinConditions()) {
+    updateTurnIndicator(game.getPlayerTurn());
+  }
 };
 /**
  * Handel Move Logic
