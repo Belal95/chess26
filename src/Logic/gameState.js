@@ -21,10 +21,16 @@ let turn = "white";
 let activeLegalMoves = [];
 
 /**
- * Holds if there is a promotion pending
+ * Holds the promotable pawn if there is a promotion pending
  * @type {Piece|Null}
  */
 let pendingPromotion = null;
+
+/**
+ * Hold then gameOver state and null if the game is still running
+ * @type {"white"|"black"|"draw"|Null}
+ */
+let gameOver = null;
 
 /**
  * The move history array
@@ -86,6 +92,19 @@ const setPendingPromotion = (pawn) => {
  * @returns {Object|null} Get pending promotion
  */
 const getPendingPromotion = () => pendingPromotion;
+/**
+ * Set Pending Promotion
+ * @param {String} condition
+ */
+const setGameOver = (condition) => {
+  gameOver = condition;
+};
+
+/**
+ * Returns the pawn pending promotion or null
+ * @returns {Object|null} Get pending promotion
+ */
+const getGameOver = () => gameOver;
 
 /**
  * Nulls active piece and legal moves
@@ -145,4 +164,6 @@ export const game = {
   getMoveHistory,
   getLastMove,
   addMove,
+  setGameOver,
+  getGameOver,
 };

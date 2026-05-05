@@ -8,7 +8,7 @@ import { handleSecondClick } from "./handleSecondClick.js";
  * @param {Event} e The event object
  */
 export function handleClick(e) {
-  if (!!game.getPendingPromotion()) {
+  if (!!game.getPendingPromotion() || !!game.getGameOver()) {
     return;
   } else {
     const index = Number(e.target.closest(".square").getAttribute("index"));

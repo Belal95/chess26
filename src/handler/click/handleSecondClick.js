@@ -1,5 +1,5 @@
 import { game } from "../../Logic/gameState.js";
-import { gameOver } from "../../UI/gameOver.js";
+import { gameOverUI } from "../../UI/gameOverUI.js";
 import { render } from "../../UI/render.js";
 import { selection } from "./selection.js";
 import { getPromotablePawn } from "../../Logic/getPromotablePawn.js";
@@ -37,7 +37,8 @@ const handleWinConditions = () => {
   const turn = game.getPlayerTurn();
   const isCheckMate = checkmate(turn, boardState.get());
   if (!!isCheckMate) {
-    gameOver(isCheckMate, turn);
+    game.setGameOver(isCheckMate);
+    gameOverUI(isCheckMate, turn);
     return false;
   } else return true;
 };
