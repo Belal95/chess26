@@ -7,6 +7,7 @@ import { getRowFirstIndex } from "./helpers.js";
  * @type {(Piece|Null)[]} The initial board state
  */
 const state = new Array(64).fill(null);
+
 /**
  * Fills board state black or white back row with pieces, takes row number and pieces color
  * @param {Number} row - row number that needs to be filled
@@ -45,23 +46,28 @@ const fillPawnRow = (row, color) => {
     index++;
   }
 };
+
 /**
- *
+ * Fills the board state with the pieces to be it's initial form
  */
-function resetBoardState() {
-  state.length = 0;
-  state.length = 64;
-  state.fill(null, 0, 64);
+function fillBoardState() {
   fillBackRow(1, "black");
   fillPawnRow(2, "black");
   fillPawnRow(7, "white");
   fillBackRow(8, "white");
 }
 
-fillBackRow(1, "black");
-fillPawnRow(2, "black");
-fillPawnRow(7, "white");
-fillBackRow(8, "white");
+/**
+ * Resets the board to it's initial state
+ */
+function resetBoardState() {
+  state.length = 0;
+  state.length = 64;
+  state.fill(null, 0, 64);
+  fillBoardState();
+}
+
+fillBoardState();
 
 const get = () => state;
 const getCopy = () => structuredClone(state);
