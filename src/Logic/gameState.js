@@ -146,6 +146,18 @@ const addMove = (move) => {
   delete move.piece.hasMoved;
   moveHistory.push(move);
 };
+
+/**
+ * Resets the game state
+ */
+const reset = () => {
+  active = null;
+  turn = "white";
+  activeLegalMoves = [];
+  pendingPromotion = null;
+  gameOver = null;
+  moveHistory = [];
+};
 /**
  * The game object that holds all of the function mutating the game
  * TODO: re-write a better explanation
@@ -166,4 +178,5 @@ export const game = {
   addMove,
   setGameOver,
   getGameOver,
+  reset,
 };

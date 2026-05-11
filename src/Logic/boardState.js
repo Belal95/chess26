@@ -60,7 +60,7 @@ function fillBoardState() {
 /**
  * Resets the board to it's initial state
  */
-function resetBoardState() {
+function reset() {
   state.length = 0;
   state.length = 64;
   state.fill(null, 0, 64);
@@ -72,4 +72,4 @@ fillBoardState();
 const get = () => state;
 const getCopy = () => structuredClone(state);
 
-export const boardState = { get, getCopy, resetBoardState };
+export const boardState = { get, getCopy, reset };
