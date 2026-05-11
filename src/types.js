@@ -5,6 +5,7 @@
  * @property {"white"|"black"} piece.color - The color of the piece (e.g., 'white').
  * @property {number} from - The starting square index.
  * @property {number} to - The destination square index.
+ * @property {Object|Null} captured - The piece being captured or null if not found
  */
 
 /**

@@ -3,6 +3,7 @@
  */
 import { game } from "./gameState.js";
 import { getIndex, getSquarePosition } from "./helpers.js";
+import { getNotation } from "./notation.js";
 
 /**
  * Handle pawn removal if it was a castling move
@@ -10,7 +11,7 @@ import { getIndex, getSquarePosition } from "./helpers.js";
  * @param {Number} from index to move from
  * @param {Number} to index to move
  */
-function handelEnPassant(boardState, from, to) {
+function handleEnPassant(boardState, from, to) {
   if (
     boardState[from].type === "pawn" &&
     (Math.abs(from - to) === 7 || Math.abs(from - to === 9)) &&
@@ -18,7 +19,9 @@ function handelEnPassant(boardState, from, to) {
   ) {
     const direction = boardState[from].color === "white" ? 8 : -8;
     boardState[to + direction] = null;
+    return "pawn";
   }
+  return null;
 }
 
 /**
@@ -50,10 +53,17 @@ function handleCastling(boardState, from, to) {
  * @param {Boolean} recordMove Optional to not record the current move
  */
 export const movePiece = (boardState, from, to, recordMove = true) => {
-  if (recordMove) game.addMove({ piece: { ...boardState[from] }, to, from });
-  handelEnPassant(boardState, from, to);
+  const enPassantCapture = handleEnPassant(boardState, from, to);
+  if (recordMove)
+    game.addMove({
+      piece: { ...boardState[from] },
+      to,
+      from,
+      captured: boardState[to] ? boardState[to].type : enPassantCapture,
+    });
   boardState[to] = boardState[from];
   boardState[to].index = to;
   handleCastling(boardState, from, to);
   boardState[from] = null;
+  console.log(getNotation(game.getLastMove()));
 };
