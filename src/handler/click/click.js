@@ -11,7 +11,7 @@ export function handleClick(e) {
   if (!!game.getPendingPromotion() || !!game.getGameOver()) {
     return;
   } else {
-    const index = Number(e.target.closest(".square").getAttribute("index"));
+    const index = Number(e.target.closest(".square")?.getAttribute("index"));
     const clickedSquare = boardState.get()[index];
     const active = game.getActive();
     if (active === null) handleFirstClick(clickedSquare);
