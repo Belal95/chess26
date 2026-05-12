@@ -37,6 +37,11 @@ let gameOver = null;
  * @type {Move[]}
  */
 let moveHistory = [];
+/**
+ * Holds the notation history as an array of tuples
+ * @type {String[][]}
+ */
+let notationHistory = [];
 
 /**
  * Set the currently selected piece by the player
@@ -147,6 +152,15 @@ const addMove = (move) => {
   moveHistory.push(move);
 };
 
+const getNotationHistory = () => notationHistory;
+const getLastNotation = () => notationHistory.at(-1).at(-1);
+const addNotation = (notation) => {
+  if (!notationHistory[0] || notationHistory.at(-1).length === 2)
+    notationHistory.push([notation]);
+  else notationHistory.at(-1).push(notation);
+  notationHistory;
+};
+
 /**
  * Resets the game state
  */
@@ -157,6 +171,7 @@ const reset = () => {
   pendingPromotion = null;
   gameOver = null;
   moveHistory = [];
+  notationHistory = [];
 };
 /**
  * The game object that holds all of the function mutating the game
@@ -179,4 +194,7 @@ export const game = {
   setGameOver,
   getGameOver,
   reset,
+  getNotationHistory,
+  getLastNotation,
+  addNotation,
 };
